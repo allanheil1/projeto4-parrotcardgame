@@ -43,6 +43,8 @@ body{
     margin: 17px;
     width: 117px;
     height: 146px;
+    transition: all .75s;
+    transform-style: preserve-3d;
     position: relative;
 }
 
@@ -56,9 +58,6 @@ body{
     justify-content: center;
     align-items: center;
     position: absolute;
-    backface-visibility: hidden;
-    transition: all .75s;
-    transform-style: preserve-3d;
     padding: 24px 7px 22px 10px;
 }
 
@@ -68,4 +67,9 @@ body{
 
 .cardFront{
     transform: rotateY(180deg);
+}
+
+.cardFlipped{
+    transform: rotateY(-180deg);
+    backface-visibility: hidden;
 }

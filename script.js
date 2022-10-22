@@ -1,8 +1,3 @@
-
-//ao abrir a página, já chamamos a função que pergunta 
-//ao jogador com quantas cartas ele quer jogar setQtdOfCards()
-setQtdOfCards();
-
 //lista de todas as cartas disponíveis para a partida
 const cardsAvailable = 
 [
@@ -21,6 +16,11 @@ let qtdOfCards;
 //variável de iteração
 let j;
 let k;
+//lista que representa o par de cartas de cada jogada (é populada e resetada a cada par de cartas escolhidas)
+let pairOfCards = [];
+let numberOfCardsFlipped = 0;
+let numberOfPlays = 0;
+let limite = 0;
 
 //função que define a quantidade de cartas escolhidas
 function setQtdOfCards(){
@@ -35,6 +35,7 @@ function setQtdOfCards(){
             cardsList.push(cardsAvailable[j-1]);
             cardsList.push(cardsAvailable[j-1]);
         }
+        console.log("cartas que farão parte da partida:");
         console.log(cardsList);
     }else{
         //caso não cumpra os requisitos, alerta o jogador
@@ -48,10 +49,8 @@ function setQtdOfCards(){
 
 //função que inicia o jogo
 function startParrot(){
-    //quando o jogo começa, precisamos alterar o html interno da classe 'allCards'
-    //para que o mesmo insira a quantidade exata de cards de acordo com valor escolhido
 
-    //elemento que vamos manipular
+    //buscando o elemento 'allCards que vamos manipular
     const allCardsElem = document.getElementById("idAllCards");
     //variável que armazena o HTML
     let allCardsTextHTML = '';
@@ -59,17 +58,35 @@ function startParrot(){
     for(k = 1; k <= cardsList.length; k++){
         allCardsTextHTML = allCardsTextHTML +
         `
-        <div class="singleCard">
-            <div class="cardCommon cardBack">
-                <img src="./arquivos/back.png">
-            </div>
+        <div class="singleCard" onclick="flipCard(this)" id="${cardsList[k-1]}">
             <div class="cardCommon cardFront">
                 <img src="./arquivos/${cardsList[k-1]}">
+            </div>
+            <div class="cardCommon cardBack">
+                <img src="./arquivos/back.png">
             </div>
         </div>
         `;
     }
-    //vamos alterar o html interno, passando o texto 'allCardsTextHTML' 
+    //alterar o html interno, passando o texto 'allCardsTextHTML' 
     //montado acima como conteúdo
     allCardsElem.innerHTML = allCardsTextHTML;
 }
+
+function flipCard(card){
+    //caso já tenhamos feito duas ou mais jogadas, retorna
+    if(pairOfCards.length >= 2){
+        return;
+    }
+    //flipa a carta, adicionando a classe que faz o transform
+    card.classList.add("cardFlipped");
+    //adiciona a carta clicada na lista 'pairOfCards'
+    pairOfCards.push(card);
+    //chama a função que verifica se acertamos ou erramos a jogada
+    verifyCards();
+}
+
+
+//ao abrir a página, a função que pergunta é chamada e pergunta
+//ao jogador com quantas cartas ele quer jogar setQtdOfCards()
+setQtdOfCards();
