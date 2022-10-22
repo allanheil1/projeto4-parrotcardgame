@@ -109,6 +109,22 @@ function verifyCards(){
     }
 }
 
+function unflipCard(){
+    for(let i = 0; i < pairOfCards.length; i++){
+        pairOfCards[i].classList.remove("cardFlipped");
+    }
+    pairOfCards = [];
+}
+
+function verifyWin(){
+    //caso o número de cartas viradas é igual ao número de cartas em jogo, você venceu
+    if(numberOfCardsFlipped == qtdOfCards){
+        alert(`Você ganhou em ${numberOfPlays} jogadas`);
+        //resetamos o número de jogadas
+        numberOfPlays = 0;
+    }
+}
+
 //ao abrir a página, a função que pergunta é chamada e pergunta
 //ao jogador com quantas cartas ele quer jogar setQtdOfCards()
 setQtdOfCards();
