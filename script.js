@@ -86,6 +86,28 @@ function flipCard(card){
     verifyCards();
 }
 
+function verifyCards(){
+    //caso a segunda jogada ainda não tenha sido feita, retorna
+    if(pairOfCards[1] === undefined){
+        return;
+    }
+    //verifica se acertamos ou erramos, comparando o id das duas cartas
+    if(pairOfCards[0].id === pairOfCards[1].id){ //ACERTAMOS
+        //acrescenta o numero de jogadas
+        numberOfPlays++;
+        //acrescenta em 2 o número de cartas viradas
+        numberOfCardsFlipped = numberOfCardsFlipped + 2;
+        //zera o par de cartas da jogada
+        pairOfCards = [];
+        //verifica se ganhamos ou ainda não
+        verifyWin();
+    }else{ //ERRAMOS
+        //acrescenta o numero de jogadas
+        numberOfPlays++;
+        //esperamos um segundo e desviramos os cards
+        setTimeout(unflipCard, 1500);
+    }
+}
 
 //ao abrir a página, a função que pergunta é chamada e pergunta
 //ao jogador com quantas cartas ele quer jogar setQtdOfCards()
