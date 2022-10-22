@@ -35,14 +35,15 @@ function setQtdOfCards(){
             cardsList.push(cardsAvailable[j-1]);
             cardsList.push(cardsAvailable[j-1]);
         }
-        console.log("cartas que farão parte da partida:");
-        console.log(cardsList);
     }else{
         //caso não cumpra os requisitos, alerta o jogador
         alert("Insira um número par entre 4 e 14");
         //e então, pergunta novamente
         return setQtdOfCards();
     }
+    //randomiza a lista de cartas
+    cardsList = cardsList.sort(randomize);
+    console.log(cardsList);
     //inicia o jogo
     startParrot();
 }
@@ -110,9 +111,11 @@ function verifyCards(){
 }
 
 function unflipCard(){
+    //desvira todas as cartas da lista de jogadas
     for(let i = 0; i < pairOfCards.length; i++){
         pairOfCards[i].classList.remove("cardFlipped");
     }
+    //reseta a lista
     pairOfCards = [];
 }
 
@@ -123,6 +126,10 @@ function verifyWin(){
         //resetamos o número de jogadas
         numberOfPlays = 0;
     }
+}
+
+function randomize(){
+    return Math.random() - 0.5; 
 }
 
 //ao abrir a página, a função que pergunta é chamada e pergunta
