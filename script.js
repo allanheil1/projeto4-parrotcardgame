@@ -122,7 +122,7 @@ function unflipCard(){
 function verifyWin(){
     //caso o número de cartas viradas é igual ao número de cartas em jogo, você venceu
     if(numberOfCardsFlipped == qtdOfCards){
-        alert(`Você ganhou em ${numberOfPlays} jogadas`);
+        alert(`Você ganhou em ${numberOfPlays*2} jogadas`);
         //resetamos o número de jogadas
         numberOfPlays = 0;
     }

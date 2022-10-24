@@ -13,7 +13,7 @@ body{
 
 
 .main{
-    width: 100%;
+    width: 1210px;
     padding: 0 20px;
 }
 
@@ -25,7 +25,7 @@ body{
 
 .page-title h1{
     color: #75B79E;
-    font-size: 56px;
+    font-size: 36px;
     font-weight: 700;
     margin: 40px 0 47px 0;
     line-height: 66px;
@@ -73,3 +73,9 @@ body{
     transform: rotateY(-180deg);
     backface-visibility: hidden;
 }
+
+@media all and (min-width: 768px) {
+    .page-title h1 {
+      font-size: 56px;
+    }
+  }
